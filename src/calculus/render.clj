@@ -9,8 +9,9 @@
                 [:body (interleave body (repeat [:br]))]])
    :headers {"Content-Type" "text/html"}})
 
-(defn redirect [route & path-params]
-  {:status 303 :headers {"Location" (route/url-for route :path-params path-params)}})
+(defn redirect
+  ([route] {:status 303 :headers {"Location" (route/url-for route)}})
+  ([route path-params] {:status 303 :headers {"Location" (apply route/url-for route :path-params path-params)}}))
 
 (defn math [& expressions]
   (apply str `("\\(" ~@expressions "\\)")))

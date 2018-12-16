@@ -3,6 +3,7 @@
             [calculus.redis :refer [rget rset]]))
 
 (defn generate-study [_]
+  (ok (rget "last-study-date"))
   (if (= (rget "continue") "true")
     (redirect :generate-even)
     (redirect :finished)))
