@@ -1,5 +1,5 @@
 (ns server
-  (:require [calculus.concept.even :refer [generate-even-function view-even-function]]
+  (:require [calculus.concept.even-function :refer [generate-even-function view-even-function]]
             [calculus.study :refer [generate-study view-finished]]
             [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]))

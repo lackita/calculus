@@ -48,10 +48,11 @@ to get things up and running:
 ```clojure
 $ cd calculus
 $ boot repl
+> (require 'calculus.server)
+> (server/start-dev)
 > (defn restart []
     (require :reload-all 'calculus.server)
     (server/restart))
-> (server/start-dev)
 ...do some coding...
 > (restart)
 ...load specified url in web browser...
