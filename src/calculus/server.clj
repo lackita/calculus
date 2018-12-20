@@ -1,16 +1,18 @@
 (ns server
-  (:require [calculus.concept.even-function :refer [generate-even-function view-even-function]]
+  (:require [calculus.concept.even-function :as even]
             [calculus.study :refer [generate-study view-finished]]
             [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]))
+            [io.pedestal.http.route :as route]
+            [io.pedestal.http.body-params :refer [body-params]]))
 
 (defonce server (atom nil))
 
 (def routes
   (route/expand-routes
-   #{["/study" :get generate-study :route-name :study-query]
-     ["/study/even-function" :get generate-even-function :route-name :generate-even]
-     ["/study/even-function/:exponent" :get view-even-function :route-name :even-function]
+   #{["/study" :get generate-study :route-name :study]
+     ["/study/even-function" :get even/generate :route-name :generate-even]
+     ["/study/even-function/:exponent" :get even/view :route-name :view-even]
+     ["/study/even-function/:exponent" :post [(body-params) even/rate] :route-name :rate-even]
      ["/study/finished" :get view-finished :route-name :finished]}))
 
 (def service-map

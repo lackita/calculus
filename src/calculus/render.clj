@@ -5,7 +5,10 @@
 (defn ok [& body]
   {:status 200
    :body (html [:html
-                [:head [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" :async :async}]]
+                [:head
+                 [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" :async :async}]
+                 [:script {:src "https://code.jquery.com/jquery-3.3.1.min.js"}]
+                 [:style ".answer { display: none; }"]]
                 [:body (interleave body (repeat [:br]))]])
    :headers {"Content-Type" "text/html"}})
 

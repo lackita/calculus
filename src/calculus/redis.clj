@@ -6,10 +6,11 @@
 (defmacro wcar* [& body] `(car/wcar redis-conn ~@body))
 
 (defn get [key]
-  (wcar* (car/get key)))
+  (let [[v n?] (wcar* (car/get key) (car/sismember "numbers" key))]
+    (if (and (= n? 1) v) (read-string v) v)))
 
 (defn sadd [key values]
-  (wcar* (apply car/sadd key values)))
+  (wcar* (apply car/sadd key (if (coll? values) values [values]))))
 
 (defn scard [key]
   (wcar* (car/scard key)))
@@ -20,4 +21,8 @@
 (defn set [key value]
   (if (set? value)
     (wcar* (sadd key value))
-    (wcar* (car/set key value))))
+    (wcar* (if (number? value) (car/sadd "numbers" key))
+           (car/set key value))))
+
+(defn srem [key member]
+  (wcar* (car/srem key member)))
