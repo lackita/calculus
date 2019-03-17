@@ -1,4 +1,4 @@
-(ns server
+(ns calculus.server
   (:require [calculus.concept.even-function :as even]
             [calculus.study :refer [generate-study view-finished]]
             [io.pedestal.http :as http]

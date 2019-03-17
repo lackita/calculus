@@ -29,16 +29,22 @@
 (defn generate [_]
   (redirect :view-even {:exponent (* 2 (- (rand-int 10) 5))}))
 
+(defn sm-2-updated-values [rating repetition]
+  {:next-repetition (inc (if (< rating 3) 0 repetition))
+   :repeat-today?   (<= rating 3)})
+
 (defn rate [request]
   (let [rating (read-string ((request :params) "rating"))
         e-factor (or (r/get "even-function-e-factor") 2.5)
-        repetition (+ (or (r/get "even-function-repetition") 0) 1)
         interval (or (r/get "even-function-interval") 0)
+        repetition (inc (or (r/get "even-function-repetition") 0))
         new-interval (case repetition
                        1 1
                        2 6
-                       (* interval e-factor))]
-    (r/set "even-function-repetition" (if (< rating 3) 0 repetition))
+                       (* interval e-factor))
+        updated-values (sm-2-updated-values rating
+                                            (inc (or (r/get "even-function-repetition") 0)))]
+    (r/set-all updated-values)
     (r/set "even-function-interval" new-interval)
     (r/set "even-function-e-factor"
            (max 1.3 (+ e-factor (- 0.1 (* (- 5 rating) (+ 0.08 (* (- 5 rating) 0.02)))))))
