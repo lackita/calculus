@@ -1,0 +1,13 @@
+class ReviewsController < ApplicationController
+  def new
+    c = Concept.order(:next_review).first
+    @review = Review.new(question: c.appropriate_question)
+    raise(StandardError, "No appropriate questions for #{c.id}: #{c.name}") if c.questions.blank?
+  end
+
+  def create
+    params[:review][:rating] = params[:commit]
+    Review.create!(params[:review].permit(:rating, :question_id, :concept_id))
+    redirect_to new_review_path
+  end
+end

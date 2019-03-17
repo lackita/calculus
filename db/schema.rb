@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114232919) do
+ActiveRecord::Schema.define(version: 20181125191247) do
 
   create_table "concepts", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "next_review"
+  end
+
+  create_table "concepts_questions", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "concept_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -25,13 +33,18 @@ ActiveRecord::Schema.define(version: 20181114232919) do
     t.text     "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "variables"
   end
 
-  create_table "questions_concepts", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "question_id"
+    t.integer  "rating"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "concept_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.float    "easiness_factor"
+    t.boolean  "correct"
+    t.text     "concept_ratings"
   end
 
 end

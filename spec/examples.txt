@@ -1,3 +1,11 @@
-example_id                                   | status  | run_time        |
--------------------------------------------- | ------- | --------------- |
-./spec/helpers/questions_helper_spec.rb[1:1] | pending | 0.00001 seconds |
+example_id                                           | status  | run_time        |
+---------------------------------------------------- | ------- | --------------- |
+./spec/controllers/reviews_controller_spec.rb[1:1:1] | passed  | 0.02072 seconds |
+./spec/controllers/reviews_controller_spec.rb[1:2:1] | failed  | 0.04536 seconds |
+./spec/helpers/questions_helper_spec.rb[1:1]         | pending | 0.00001 seconds |
+./spec/models/concept_spec.rb[1:1]                   | pending | 0.00001 seconds |
+./spec/models/concepts_question_spec.rb[1:1]         | pending | 0.00001 seconds |
+./spec/models/question_spec.rb[1:1]                  | pending | 0.00001 seconds |
+./spec/models/review_spec.rb[1:1]                    | passed  | 0.02797 seconds |
+./spec/views/review/create.html.erb_spec.rb[1:1]     | pending | 0.00001 seconds |
+./spec/views/review/new.html.erb_spec.rb[1:1]        | pending | 0.00001 seconds |

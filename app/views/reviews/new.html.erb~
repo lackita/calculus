@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col question">
+      <%= @review.question.extrapolate_variables %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button onclick="$('.answer').slideToggle()" type="button" class="btn btn-secondary">Show Answer</button>
+    </div>
+  </div>
+
+  <div class="row answer">
+    <div class="col">
+      <div class="row">
+	<div class="col">
+	  <%= @review.question.answer %>
+	</div>
+      </div>
+
+      <%= form_for(@review) do |f| %>
+	<%= f.hidden_field :question_id, value: @review.question.id %>
+
+	<div class="row">
+	  <div class="col">Concept</div>
+	  <div class="col">Hard</div>
+	  <div class="col">Easy</div>
+	</div>
+
+	<% @review.question.concepts.each do |concept| %>
+	  <div class="row">
+	    <div class="col"><%= concept.name %></div>
+	    <div class="col"><%= f.radio_button "concept_ratings", concept.id => 3 %></div>
+	    <div class="col"><%= f.radio_button "concept_ratings", concept.id => 5 %></div>
+	  </div>
+	<% end %>
+
+	<div class="row">
+	  <div class="col"><%= f.radio_button :correct, true %> Correct</div>
+	  <div class="col"><%= f.radio_button :correct, false %> Incorrect</div>
+	</div>
+
+	<div class="row"><div class="col"><%= f.submit "Submit" %></div></div>
+      <% end %>
+    </div>
+  </div>
+</div>

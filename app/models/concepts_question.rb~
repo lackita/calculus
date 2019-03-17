@@ -1,0 +1,2 @@
+class ConceptsQuestion < ActiveRecord::Base
+end

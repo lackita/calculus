@@ -1,6 +1,6 @@
-class QuestionConcepts < ActiveRecord::Migration
+class CreateConceptsQuestions < ActiveRecord::Migration
   def change
-    create_table :questions_concepts do |t|
+    create_table :concepts_questions do |t|
       t.integer :question_id
       t.integer :concept_id
 

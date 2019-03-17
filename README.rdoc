@@ -26,3 +26,17 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+== TODO
+
+* Write a real README
+* Build an about page that includes the following note:
+
+```
+Algorithm SM-2, (C) Copyright SuperMemo World, 1991.
+
+http://www.supermemo.com
+http://www.supermemo.eu
+
+SM-2 was modified to automatically generate questions which coordinate familiar concepts with unfamiliar ones.
+```

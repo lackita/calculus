@@ -8,3 +8,14 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Security/Eval:
+  Exclude:
+    - app/models/question.rb
+
+Lint/UselessAssignment:
+  Exclude:
+    - app/models/question.rb
